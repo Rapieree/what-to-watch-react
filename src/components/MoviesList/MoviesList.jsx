@@ -19,7 +19,7 @@ const MoviesList = ({ movies }) => {
   return (
     <>
       <div className="catalog__movies-list">
-        {movies.slice(0, viewFilmsCount).map((movie, index) => <MovieItem key={index} movie={movie} />)}
+        {movies.slice(0, viewFilmsCount).map((movie, index) => <MovieItem key={movie.id} movie={movie} />)}
       </div>
 
       {viewFilmsCount !== movies.length

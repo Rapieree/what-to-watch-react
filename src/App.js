@@ -4,7 +4,6 @@ import ReactDom from 'react-dom';
 import GenresList from './components/GenresList/GenresList';
 import MoviesList from './components/MoviesList/MoviesList';
 import { getMoviesList } from './mocks/movies-list';
-import MoreButton from './components/MoreButton/MoreButton';
 
 const movies = getMoviesList();
 
@@ -18,8 +17,6 @@ function App() {
           <GenresList />
 
           <MoviesList movies={movies} />
-
-          {/* <MoreButton /> */}
         </section>
 
         <footer className="page-footer">

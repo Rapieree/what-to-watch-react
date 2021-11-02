@@ -21,9 +21,9 @@ const GenresList = () => {
 
   return (
     <ul className="catalog__genres-list">
-      {genres.map((genre, index) =>
+      {genres.map((genre) =>
         <GenresItem
-          key={index}
+          key={genre}
           genre={genre}
           isActive={genre === activeGenre ? true : false}
           onClick={() => setActiveGenre(genre)}
