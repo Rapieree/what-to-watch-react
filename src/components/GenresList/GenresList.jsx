@@ -14,10 +14,8 @@ const genres = [
   "Thrillers",
 ];
 
-const GenresList = () => {
+const GenresList = ({FilterMoviesByGenre}) => {
   const [activeGenre, setActiveGenre] = useState("All genres");
-
-
 
   return (
     <ul className="catalog__genres-list">
@@ -26,7 +24,7 @@ const GenresList = () => {
           key={genre}
           genre={genre}
           isActive={genre === activeGenre ? true : false}
-          onClick={() => setActiveGenre(genre)}
+          onClick={(evt) => evt.preventDefault() & setActiveGenre(genre) & FilterMoviesByGenre(genre) }
         />
       )}
     </ul>

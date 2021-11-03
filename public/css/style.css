@@ -514,9 +514,9 @@ main {
   margin-right: 20px;
   margin-bottom: 20px; }
   .catalog__genres-item--active .catalog__genres-link {
-    font-weight: bold; }
+    transform: scale(1.1); }
     .catalog__genres-item--active .catalog__genres-link::after {
-      display: block; }
+      transform: scale(1); }
   .catalog__genres-item:last-child {
     margin-right: 0; }
 
@@ -527,7 +527,7 @@ main {
   position: relative;
   padding-bottom: 15px;
   -webkit-transition: font-weight;
-  transition: font-weight; }
+  transition: all 0.3s; }
   .catalog__genres-link::after {
     content: '';
     position: absolute;
@@ -537,9 +537,10 @@ main {
     height: 1px;
     bottom: 0;
     background: #D9CD8D;
-    display: none; }
+    transition: all 0.3s;
+    transform: scale(0); }
   .catalog__genres-link:hover::after {
-    display: block; }
+    transform: scale(1); }
 
 .catalog__movies-list {
   display: -webkit-box;

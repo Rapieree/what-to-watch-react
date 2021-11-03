@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MoreButton from '../MoreButton/MoreButton';
 import MovieItem from '../MovieItem/MovieItem';
 
@@ -8,8 +8,12 @@ const FILMS_ADDED_ON_CLICK = 8;
 const MoviesList = ({ movies }) => {
   const [viewFilmsCount, setViewFilmsCount] = useState(START_FILMS_COUNT);
 
+  useEffect(() => {
+    setViewFilmsCount(START_FILMS_COUNT);
+  }, [movies]);
+
   const addFilmsOnMoreButtonClick = () => {
-    if(viewFilmsCount + FILMS_ADDED_ON_CLICK < movies.length-1) {
+    if(viewFilmsCount + FILMS_ADDED_ON_CLICK < movies.length) {
       setViewFilmsCount(viewFilmsCount + FILMS_ADDED_ON_CLICK);
     } else {
       setViewFilmsCount(movies.length);
@@ -22,7 +26,7 @@ const MoviesList = ({ movies }) => {
         {movies.slice(0, viewFilmsCount).map((movie, index) => <MovieItem key={movie.id} movie={movie} />)}
       </div>
 
-      {viewFilmsCount !== movies.length
+      {viewFilmsCount < movies.length
         ? <MoreButton onClick={addFilmsOnMoreButtonClick}/>
         : ''}
     </>
