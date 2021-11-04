@@ -1,7 +1,10 @@
 import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 const MovieItem = ({ movie }) => {
-  const {name, imageSrc, detailsLink} = movie;
+  const {name, imageSrc, id} = movie;
+
+  const route = useHistory();
 
   return (
     <article className="small-movie-card catalog__movies-card">
@@ -10,7 +13,7 @@ const MovieItem = ({ movie }) => {
           alt={name} width="280" height="175" />
       </div>
       <h3 className="small-movie-card__title">
-        <a className="small-movie-card__link" href={detailsLink}>{name}</a>
+        <Link className="small-movie-card__link" to={"details-films/" + id}>{name}</Link>
       </h3>
     </article>
   );

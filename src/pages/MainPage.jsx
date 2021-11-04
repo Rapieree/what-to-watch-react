@@ -18,7 +18,7 @@ function MainPage() {
 
   return (
     <>
-      <MovieCard />
+      <MovieCard isFullCard={false}/>
 
       <div className="page-content">
         <section className="catalog">

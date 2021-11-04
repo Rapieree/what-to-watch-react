@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MovieCardButtons = () => {
+const MovieCardButtons = ({children}) => {
   return (
     <div className="movie-card__buttons">
       <button className="btn btn--play movie-card__button" type="button">
@@ -15,6 +15,7 @@ const MovieCardButtons = () => {
         </svg>
         <span>My list</span>
       </button>
+      {children}
     </div>
   );
 };
