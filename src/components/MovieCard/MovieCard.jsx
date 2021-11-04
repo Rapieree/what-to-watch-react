@@ -1,7 +1,9 @@
 import React from 'react';
 import Header from '../Header/Header';
 import MovieCardButtons from '../MovieCardButtons/MovieCardButtons';
-import MovieNav from '../MovieNav/MovieNav';
+import MovieDetails from '../MovieDetails/MovieDetails';
+import MovieOverview from '../MovieOverview/MovieOverview';
+import MovieTabs from '../MovieTabs/MovieTabs';
 
 const getBackgroundMarkup = (srcimage, altText) => {
   return (
@@ -57,7 +59,10 @@ const MovieCard = ({ isFullCard = false }) => {
             {getPosterMarkup(true)}
 
             <div className="movie-card__desc">
-              <MovieNav />
+              <MovieTabs>
+                <MovieOverview tabName="Overview"/>
+                <MovieDetails tabName="Details" />
+              </MovieTabs>
             </div>
 
 

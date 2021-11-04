@@ -11,19 +11,32 @@ const activeLinkClass = "movie-nav__item--active";
 
 const getNavItemMarkup = (name, activeLink, onClickLinkCallback) => {
   return (
-    <li className={activeLink === name ? "movie-nav__item " + activeLinkClass : "movie-nav__item"}>
-      <a href="#" className="movie-nav__link" onClick={onClickLinkCallback}>{name}</a>
+    <li
+      className={activeLink === name ? "movie-nav__item " + activeLinkClass : "movie-nav__item"}
+      key={name}
+    >
+      <a
+        href="#"
+        className="movie-nav__link"
+        onClick={onClickLinkCallback}
+      >{name}</a>
     </li>
   );
 }
 
-const MovieNav = ({ activeLink = links[0]}) => {
+const MovieNav = ({ activeLink, setActiveTab }) => {
   const [active, setActive] = useState(activeLink);
+
+  const onClickLink = (evt, link) => {
+    evt.preventDefault();
+    setActive(link);
+    setActiveTab(link);
+  };
 
   return (
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
-        {links.map((link) => getNavItemMarkup(link, active, (evt) => evt.preventDefault() & setActive(link)))}
+        {links.map((link) => getNavItemMarkup(link, active, (evt) => onClickLink(evt, link)))}
       </ul>
     </nav>
   );

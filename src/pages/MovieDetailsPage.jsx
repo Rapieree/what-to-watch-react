@@ -11,9 +11,9 @@ const MovieDetailsPage = () => {
     <>
       <MovieCard isFullCard={true} />
 
-      <div class="page-content">
-        <section class="catalog catalog--like-this">
-          <h2 class="catalog__title">More like this</h2>
+      <div className="page-content">
+        <section className="catalog catalog--like-this">
+          <h2 className="catalog__title">More like this</h2>
 
           <MoviesList movies={movies} />
         </section>

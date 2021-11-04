@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactDom from 'react-dom';
 import GenresList from '.././components/GenresList/GenresList';
 import MoviesList from '.././components/MoviesList/MoviesList';
 import { getMoviesList } from '.././mocks/movies-list';
