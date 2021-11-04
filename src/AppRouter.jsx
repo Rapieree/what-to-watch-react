@@ -9,10 +9,7 @@ const AppRouter = () => {
       <Route exact path="/">
         <MainPage />
       </Route>
-      {/* <Route path="/details-films">
-        <MovieDetailsPage />
-      </Route> */}
-      <Route exact path="/details-films/:id">
+      <Route exact path="/films/:id">
         <MovieDetailsPage />
       </Route>
       <Redirect to="/" />

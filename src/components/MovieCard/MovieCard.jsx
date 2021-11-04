@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../Header/Header';
 import MovieCardButtons from '../MovieCardButtons/MovieCardButtons';
+import MovieNav from '../MovieNav/MovieNav';
 
 const getBackgroundMarkup = (srcimage, altText) => {
   return (
@@ -54,6 +55,12 @@ const MovieCard = ({ isFullCard = false }) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             {getPosterMarkup(true)}
+
+            <div className="movie-card__desc">
+              <MovieNav />
+            </div>
+
+
           </div>
         </div>
       </section>
