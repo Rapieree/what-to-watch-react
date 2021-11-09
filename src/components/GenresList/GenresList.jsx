@@ -1,21 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Action} from '../../store/actions';
+import {genres} from '../../utils/const';
 import GenresItem from '../GenresItem/GenresItem';
 
-const genres = [
-  `All genres`,
-  `Comedies`,
-  `Crime`,
-  `Documentary`,
-  `Dramas`,
-  `Horror`,
-  `Kids & Family`,
-  `Romance`,
-  `Sci-Fi`,
-  `Thrillers`,
-];
+const GenresList = () => {
+  const activeGenre = useSelector((state) => state.activeGenre);
 
-const GenresList = ({filterMoviesByGenre}) => {
-  const [activeGenre, setActiveGenre] = useState(`All genres`);
+  const dispatch = useDispatch();
+
+  const onClickLink = (evt, genre) => {
+    evt.preventDefault();
+    dispatch(Action.setGenre(genre));
+  };
 
   return (
     <ul className="catalog__genres-list">
@@ -26,11 +23,7 @@ const GenresList = ({filterMoviesByGenre}) => {
               key={genre}
               genre={genre}
               isActive={genre === activeGenre ? true : false}
-              onClick={(evt) => {
-                evt.preventDefault();
-                setActiveGenre(genre);
-                filterMoviesByGenre(genre);
-              }}
+              onClickLink={(evt) => onClickLink(evt, genre)}
             />
           );
         })
