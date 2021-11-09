@@ -1,8 +1,6 @@
 import React from 'react';
 import Logo from '../Logo/Logo';
 
-//  logo__link--light
-
 const Footer = () => {
   return (
     <footer className="page-footer">

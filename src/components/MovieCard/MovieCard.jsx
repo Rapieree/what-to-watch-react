@@ -5,22 +5,22 @@ import MovieDetails from '../MovieDetails/MovieDetails';
 import MovieOverview from '../MovieOverview/MovieOverview';
 import MovieTabs from '../MovieTabs/MovieTabs';
 
-const getBackgroundMarkup = (srcimage, altText) => {
+const getBackgroundMarkup = () => {
   return (
     <div className="movie-card__bg">
       <img src="/img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
     </div>
   );
-}
+};
 
 const getPosterMarkup = (isFullCard) => {
   return (
-    <div className={isFullCard ? "movie-card__poster movie-card__poster--big" : "movie-card__poster"}>
+    <div className={isFullCard ? `movie-card__poster movie-card__poster--big` : `movie-card__poster`}>
       <img src="/img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
         height="327" />
     </div>
   );
-}
+};
 
 const getMovieShortDesc = (title, genre, year, buttons) => {
   return (
@@ -37,8 +37,7 @@ const getMovieShortDesc = (title, genre, year, buttons) => {
   );
 };
 
-const MovieCard = ({ isFullCard = false }) => {
-
+const MovieCard = ({isFullCard = false}) => {
   if (isFullCard) {
     return (
       <section className="movie-card movie-card--full">
@@ -50,7 +49,7 @@ const MovieCard = ({ isFullCard = false }) => {
           <Header />
 
           <div className="movie-card__wrap">
-            {getMovieShortDesc("", "", "", <MovieCardButtons />)}
+            {getMovieShortDesc(``, ``, ``, <MovieCardButtons />)}
           </div>
         </div>
 
@@ -60,12 +59,10 @@ const MovieCard = ({ isFullCard = false }) => {
 
             <div className="movie-card__desc">
               <MovieTabs>
-                <MovieOverview tabName="Overview"/>
+                <MovieOverview tabName="Overview" />
                 <MovieDetails tabName="Details" />
               </MovieTabs>
             </div>
-
-
           </div>
         </div>
       </section>
@@ -80,10 +77,10 @@ const MovieCard = ({ isFullCard = false }) => {
 
       <Header />
 
-      <div class="movie-card__wrap">
-        <div class="movie-card__info">
+      <div className="movie-card__wrap">
+        <div className="movie-card__info">
           {getPosterMarkup()}
-          {getMovieShortDesc("", "", "", <MovieCardButtons />)}
+          {getMovieShortDesc(``, ``, ``, <MovieCardButtons />)}
         </div>
       </div>
     </section>

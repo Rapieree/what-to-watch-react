@@ -619,6 +619,9 @@ main {
     .logo__link--light[href]:hover, .logo__link--light[href]:focus {
       border-color: rgba(223, 207, 119, 0.36);
       color: #D9CD8D; }
+  .logo__link--disabled {
+    pointer-events: none;
+  }
 
 .logo__letter {
   font-size: 26px; }

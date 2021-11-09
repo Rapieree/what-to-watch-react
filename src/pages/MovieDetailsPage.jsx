@@ -2,7 +2,7 @@ import React from 'react';
 import Footer from '../components/Footer/Footer';
 import MovieCard from '../components/MovieCard/MovieCard';
 import MoviesList from '../components/MoviesList/MoviesList';
-import { getMoviesList } from '../mocks/movies-list';
+import {getMoviesList} from '../mocks/movies-list';
 
 const movies = getMoviesList().slice(0, 8);
 

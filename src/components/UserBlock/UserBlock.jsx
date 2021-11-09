@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserBlock = ({ isAuthUser }) => {
+const UserBlock = ({isAuthUser}) => {
 
   return (
     isAuthUser
@@ -11,8 +11,8 @@ const UserBlock = ({ isAuthUser }) => {
         </div>
       </div>
       :
-      <div class="user-block">
-        <a href="sign-in.html" class="user-block__link">Sign in</a>
+      <div className="user-block">
+        <a href="sign-in.html" className="user-block__link">Sign in</a>
       </div>
   );
 };
