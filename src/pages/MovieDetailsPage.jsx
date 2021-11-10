@@ -1,4 +1,5 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import Footer from '../components/Footer/Footer';
 import MovieCard from '../components/MovieCard/MovieCard';
 import MoviesList from '../components/MoviesList/MoviesList';
@@ -7,9 +8,11 @@ import {getMoviesList} from '../mocks/movies-list';
 const movies = getMoviesList().slice(0, 8);
 
 const MovieDetailsPage = () => {
+  const currentMovie = useSelector((state) => state.currentMovie);
+
   return (
     <>
-      <MovieCard isFullCard={true} />
+      <MovieCard movie={currentMovie} />
 
       <div className="page-content">
         <section className="catalog catalog--like-this">
