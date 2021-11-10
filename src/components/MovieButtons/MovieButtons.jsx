@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MovieCardButtons = ({children}) => {
+const MovieButtons = ({children}) => {
   return (
     <div className="movie-card__buttons">
       <button className="btn btn--play movie-card__button" type="button">
@@ -20,4 +20,4 @@ const MovieCardButtons = ({children}) => {
   );
 };
 
-export default MovieCardButtons;
+export default MovieButtons;

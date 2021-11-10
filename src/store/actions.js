@@ -1,6 +1,7 @@
 export const ActionTypes = {
   SetGenre: `SET_GENRE`,
-  SetMovies: `SET_MOVIES`
+  SetMovies: `SET_MOVIES`,
+  SetCurrentMovie: `SET_CURRENT_MOVIE`,
 };
 
 
@@ -11,9 +12,17 @@ export const getGenreAction = (genre) => {
   };
 };
 
-export const getMoviesAction = (films) => {
+export const getMoviesAction = (movies) => {
   return {
     type: ActionTypes.SetMovies,
-    payload: films,
+    payload: movies,
   };
 };
+
+export const getCurrentMovieAction = (movie) => {
+  return {
+    type: ActionTypes.SetCurrentMovie,
+    payload: movie,
+  };
+};
+

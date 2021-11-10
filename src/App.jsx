@@ -6,12 +6,15 @@ import './App.css';
 import {getMoviesList} from './mocks/movies-list';
 import MainPage from './pages/MainPage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
-import {getMoviesAction} from './store/actions';
+import {getCurrentMovieAction, getMoviesAction} from './store/actions';
 
 const movies = getMoviesList();
+const currentMovie = movies[0];
 
 const App = () => {
   const dispatch = useDispatch();
+
+  dispatch(getCurrentMovieAction(currentMovie));
 
   useEffect(() => {
     dispatch(getMoviesAction(movies));

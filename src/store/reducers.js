@@ -14,6 +14,8 @@ const reducer = (state = defaultState, action) => {
       return {...state, activeGenre: action.payload};
     case ActionTypes.SetMovies:
       return {...state, movies: action.payload};
+    case ActionTypes.SetCurrentMovie:
+      return {...state, currentMovie: action.payload};
     default:
       return state;
   }

@@ -3,8 +3,8 @@ import {useSelector} from 'react-redux';
 import {useEffect} from 'react/cjs/react.development';
 import Footer from '.././components/Footer/Footer';
 import GenresList from '.././components/GenresList/GenresList';
-import MovieCard from '.././components/MovieCard/MovieCard';
 import MoviesList from '.././components/MoviesList/MoviesList';
+import MoviePromo from '../components/MoviePromo/MoviePromo';
 import {ALL_GENRES} from '../utils/const';
 
 const getFilteredMovies = (movies, activeGenre) => {
@@ -18,6 +18,7 @@ const getFilteredMovies = (movies, activeGenre) => {
 function MainPage() {
   const movies = useSelector((state) => state.movies);
   const activeGenre = useSelector((state) => state.activeGenre);
+  const currentMovie = useSelector((state) => state.currentMovie);
 
   const [filteredMovies, setFilteredMovies] = useState(movies);
 
@@ -27,7 +28,7 @@ function MainPage() {
 
   return (
     <>
-      <MovieCard isFullCard={false}/>
+      <MoviePromo movie={currentMovie}/>
 
       <div className="page-content">
         <section className="catalog">
