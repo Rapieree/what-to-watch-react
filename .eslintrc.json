@@ -1,0 +1,37 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true,
+    "commonjs": true,
+    "jest": false
+  },
+
+  "extends": ["htmlacademy/es6", "plugin:react/recommended"],
+
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+
+  "plugins": ["react"],
+
+  "rules": {
+    "react/prop-types": 0
+    // "sort-imports": ["Error", {
+    //   "ignoreCase": false,
+    //   "ignoreDeclarationSort": false,
+    //   "ignoreMemberSort": false,
+    //   "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+    //   "allowSeparatedGroups": false
+    // }]
+  },
+
+  "settings": {
+    "react": {
+      "version": "17"
+    }
+  }
+}
