@@ -1,17 +1,17 @@
-import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Action} from '../../store/actions';
+import React from 'react';
 import {genres} from '../../utils/const';
 import GenresItem from '../GenresItem/GenresItem';
+import {getGenreAction} from '../../store/actions';
 
 const GenresList = () => {
   const activeGenre = useSelector((state) => state.activeGenre);
 
   const dispatch = useDispatch();
 
-  const onClickLink = (evt, genre) => {
+  const onLinkClick = (evt, genre) => {
     evt.preventDefault();
-    dispatch(Action.setGenre(genre));
+    dispatch(getGenreAction(genre));
   };
 
   return (
@@ -23,7 +23,7 @@ const GenresList = () => {
               key={genre}
               genre={genre}
               isActive={genre === activeGenre ? true : false}
-              onClickLink={(evt) => onClickLink(evt, genre)}
+              onLinkClick={(evt) => onLinkClick(evt, genre)}
             />
           );
         })

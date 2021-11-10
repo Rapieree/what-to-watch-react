@@ -3,20 +3,17 @@ export const ActionTypes = {
   SetMovies: `SET_MOVIES`
 };
 
-class Action {
-  static setGenre(genre) {
-    return {
-      type: ActionTypes.SetGenre,
-      payload: genre,
-    };
-  }
 
-  static setMovies(films) {
-    return {
-      type: ActionTypes.SetMovies,
-      payload: films,
-    };
-  }
-}
+export const getGenreAction = (genre) => {
+  return {
+    type: ActionTypes.SetGenre,
+    payload: genre,
+  };
+};
 
-export {Action};
+export const getMoviesAction = (films) => {
+  return {
+    type: ActionTypes.SetMovies,
+    payload: films,
+  };
+};

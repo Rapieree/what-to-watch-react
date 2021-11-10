@@ -1,18 +1,18 @@
 import React, {useState} from 'react';
-import GenresList from '.././components/GenresList/GenresList';
-import MoviesList from '.././components/MoviesList/MoviesList';
-import Footer from '.././components/Footer/Footer';
-import MovieCard from '.././components/MovieCard/MovieCard';
 import {useSelector} from 'react-redux';
 import {useEffect} from 'react/cjs/react.development';
+import Footer from '.././components/Footer/Footer';
+import GenresList from '.././components/GenresList/GenresList';
+import MovieCard from '.././components/MovieCard/MovieCard';
+import MoviesList from '.././components/MoviesList/MoviesList';
 import {ALL_GENRES} from '../utils/const';
 
-const getFilteredMovies = (films, activeGenre) => {
+const getFilteredMovies = (movies, activeGenre) => {
   if (activeGenre === ALL_GENRES) {
-    return [...films];
+    return movies;
   }
 
-  return films.filter((movie) => movie.genre === activeGenre);
+  return movies.filter((movie) => movie.genre === activeGenre);
 };
 
 function MainPage() {

@@ -1,4 +1,3 @@
-
 import {ALL_GENRES} from "../utils/const";
 import {ActionTypes} from "./actions";
 
