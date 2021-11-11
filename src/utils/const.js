@@ -7,12 +7,14 @@ export const ALL_GENRES = `All genres`;
 
 export const genres = [
   `All genres`,
+  `Action`,
+  `Fantasy`,
+  `Mystery`,
   `Comedies`,
   `Crime`,
   `Documentary`,
   `Dramas`,
   `Horror`,
-  `Kids & Family`,
   `Romance`,
   `Sci-Fi`,
   `Thrillers`,

@@ -2,6 +2,7 @@ export const ActionTypes = {
   SetGenre: `SET_GENRE`,
   SetMovies: `SET_MOVIES`,
   SetCurrentMovie: `SET_CURRENT_MOVIE`,
+  SetSimilarMovies: `SET_SIMILAR_MOVIES`,
 };
 
 
@@ -26,3 +27,9 @@ export const getCurrentMovieAction = (movie) => {
   };
 };
 
+export const getSimilarMoviesAction = (movie) => {
+  return {
+    type: ActionTypes.SetSimilarMovies,
+    payload: movie,
+  };
+};
