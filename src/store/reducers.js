@@ -15,6 +15,7 @@ const defaultState = {
   },
   similarMovies: [],
   isAuthUser: false,
+  error: null,
 };
 
 const reducer = (state = defaultState, action) => {
@@ -27,6 +28,8 @@ const reducer = (state = defaultState, action) => {
       return {...state, currentMovie: action.payload};
     case ActionTypes.SetSimilarMovies:
       return {...state, similarMovies: action.payload};
+    case ActionTypes.SetError:
+      return {...state, error: action.payload};
     default:
       return state;
   }

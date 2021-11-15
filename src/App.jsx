@@ -5,15 +5,16 @@ import {useEffect} from 'react/cjs/react.development';
 import './App.css';
 import MainPage from './pages/MainPage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
-import {fetchMoviesList} from './services/api';
+import {loadDetailsMovieAsyncAction, loadMoviesAsyncAction, loadSimilarMoviesAsyncAction} from './store/actions';
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchMoviesList(dispatch);
+    dispatch(loadMoviesAsyncAction());
+    dispatch(loadDetailsMovieAsyncAction(1));
+    dispatch(loadSimilarMoviesAsyncAction(1));
   }, []);
-
 
   return (
     <BrowserRouter>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {fetchMovieDetail, fetchSimilarFilms} from '../../services/api';
+import {loadDetailsMovieAsyncAction, loadSimilarMoviesAsyncAction} from '../../store/actions';
 
 const MovieItem = ({movie}) => {
   const {title, imageSrc, id} = movie;
@@ -11,8 +11,8 @@ const MovieItem = ({movie}) => {
 
   const onLinkClick = () => {
     if (currentMovie !== movie) {
-      fetchMovieDetail(dispatch, movie.id);
-      fetchSimilarFilms(dispatch, movie.id);
+      dispatch(loadDetailsMovieAsyncAction(id));
+      dispatch(loadSimilarMoviesAsyncAction(id));
     }
   };
 
