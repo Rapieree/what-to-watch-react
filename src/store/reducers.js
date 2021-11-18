@@ -4,15 +4,8 @@ import {ActionTypes} from "./actions";
 const defaultState = {
   movies: [],
   activeGenre: ALL_GENRES,
-  currentMovie: {
-    id: ``,
-    title: ``,
-    year: ``,
-    genres: ``,
-    backgroundSrc: ``,
-    posterSrc: ``,
-    imageSrc: ``,
-  },
+  currentMovieId: null,
+  currentMovie: { },
   similarMovies: [],
   isAuthUser: false,
   error: null,
@@ -30,6 +23,8 @@ const reducer = (state = defaultState, action) => {
       return {...state, similarMovies: action.payload};
     case ActionTypes.SetError:
       return {...state, error: action.payload};
+    case ActionTypes.SetCurrentMovieId:
+      return {...state, currentMovieId: action.payload};
     default:
       return state;
   }

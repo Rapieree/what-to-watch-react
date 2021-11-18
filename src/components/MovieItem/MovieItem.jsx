@@ -1,24 +1,23 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {loadDetailsMovieAsyncAction, loadSimilarMoviesAsyncAction} from '../../store/actions';
+import {getCurrentMovieIdAction} from '../../store/actions';
 
 const MovieItem = ({movie}) => {
   const {title, imageSrc, id} = movie;
 
-  const currentMovie = useSelector((state) => state.currentMovie);
+  const currentMovieId = useSelector((state) => state.currentMovieId);
   const dispatch = useDispatch();
 
   const onLinkClick = () => {
-    if (currentMovie !== movie) {
-      dispatch(loadDetailsMovieAsyncAction(id));
-      dispatch(loadSimilarMoviesAsyncAction(id));
+    if (currentMovieId !== id) {
+      dispatch(getCurrentMovieIdAction(id));
     }
   };
 
   return (
     <article className="small-movie-card catalog__movies-card" >
-      <div className="small-movie-card__image" >
+      <div className="small-movie-card__image" onClick={onLinkClick}>
         <img
           src={imageSrc}
           alt={title}

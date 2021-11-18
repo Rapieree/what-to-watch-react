@@ -7,6 +7,7 @@ export const ActionTypes = {
   SetCurrentMovie: `SET_CURRENT_MOVIE`,
   SetSimilarMovies: `SET_SIMILAR_MOVIES`,
   SetError: `SET_ERROR`,
+  SetCurrentMovieId: `SET_CURRENT_MOVIE_ID`,
 };
 
 
@@ -45,9 +46,16 @@ export const getErrorAction = (error) => {
   };
 };
 
+export const getCurrentMovieIdAction = (movieId) => {
+  return {
+    type: ActionTypes.SetCurrentMovieId,
+    payload: movieId,
+  };
+};
+
 // async actions
 
-export const loadDetailsMovieAsyncAction = (id) => {
+export const loadDetailsMovieAction = (id) => {
   return async (dispatch) => {
     const data = await fetchMovieDetail(id);
 
@@ -61,7 +69,7 @@ export const loadDetailsMovieAsyncAction = (id) => {
   };
 };
 
-export const loadMoviesAsyncAction = () => {
+export const loadMoviesAction = () => {
   return async (dispatch) => {
     const data = await fetchMoviesList();
 
@@ -75,7 +83,7 @@ export const loadMoviesAsyncAction = () => {
   };
 };
 
-export const loadSimilarMoviesAsyncAction = (id) => {
+export const loadSimilarMoviesAction = (id) => {
   return async (dispatch) => {
     const data = await fetchSimilarFilms(id);
 
