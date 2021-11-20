@@ -1,40 +1,24 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react/cjs/react.development';
 import Footer from '.././components/Footer/Footer';
 import GenresList from '.././components/GenresList/GenresList';
-import MoviesList from '.././components/MoviesList/MoviesList';
+import LoadMoviesListWrapper from '../components/LoadMoviesListWrapper/LoadMoviesListWrapper';
 import MoviePromo from '../components/MoviePromo/MoviePromo';
-import {getCurrentMovieIdAction} from '../store/actions';
-import {ALL_GENRES} from '../utils/const';
+import {setCurrentMovieIdAction} from '../store/actions';
 
-const getFilteredMovies = (movies, activeGenre) => {
-  if (activeGenre === ALL_GENRES) {
-    return movies;
-  }
-
-  return movies.filter((movie) => movie.genre === activeGenre);
-};
 
 function MainPage() {
-  const movies = useSelector((state) => state.movies);
-  const activeGenre = useSelector((state) => state.activeGenre);
   const currentMovie = useSelector((state) => state.currentMovie);
   const currentMovieId = useSelector((state) => state.currentMovieId);
 
   const dispatch = useDispatch();
 
-  const [filteredMovies, setFilteredMovies] = useState(movies);
-
   useEffect(() => {
     if (!currentMovieId) {
-      dispatch(getCurrentMovieIdAction(1));
+      dispatch(setCurrentMovieIdAction(1));
     }
   }, []);
-
-  useEffect(() => {
-    setFilteredMovies(getFilteredMovies(movies, activeGenre));
-  }, [movies, activeGenre]);
 
   return (
     <>
@@ -46,9 +30,8 @@ function MainPage() {
 
           <GenresList />
 
-          <MoviesList movies={filteredMovies} />
+          <LoadMoviesListWrapper />
         </section>
-
         <Footer />
       </div>
     </>

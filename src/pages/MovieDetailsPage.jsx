@@ -5,7 +5,7 @@ import {useEffect} from 'react/cjs/react.development';
 import Footer from '../components/Footer/Footer';
 import MovieCard from '../components/MovieCard/MovieCard';
 import MoviesList from '../components/MoviesList/MoviesList';
-import {getCurrentMovieIdAction} from '../store/actions';
+import {setCurrentMovieIdAction} from '../store/actions';
 
 const MovieDetailsPage = () => {
   const currentMovie = useSelector((state) => state.currentMovie);
@@ -18,7 +18,7 @@ const MovieDetailsPage = () => {
 
   useEffect(() => {
     if (routerId !== currentMovieId) {
-      dispatch(getCurrentMovieIdAction(routerId));
+      dispatch(setCurrentMovieIdAction(routerId));
     }
   }, [routerId]);
 

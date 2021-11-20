@@ -6,50 +6,85 @@ export const ActionTypes = {
   SetMovies: `SET_MOVIES`,
   SetCurrentMovie: `SET_CURRENT_MOVIE`,
   SetSimilarMovies: `SET_SIMILAR_MOVIES`,
+  SetCurrentViewMovies: `SET_CURRENT_VIEW_MOVIES`,
   SetError: `SET_ERROR`,
   SetCurrentMovieId: `SET_CURRENT_MOVIE_ID`,
+  SetMoviesCounterByGenres: `SET_MOVIES_COUNTER_BY_GENRES`,
+
+  // hard actions
+  AddMovies: `ADD_MOVIES`, // фильмы на вход
+  IncRequestMoviesPages: `INC_REQUEST_MOVIES_PAGES`,
+  SetRemainingMoviesCounts: `SET_REMAINING_MOVIES_COUNTS`,
 };
 
 
-export const getGenreAction = (genre) => {
+export const setGenreAction = (genre) => {
   return {
     type: ActionTypes.SetGenre,
     payload: genre,
   };
 };
 
-export const getMoviesAction = (movies) => {
+export const setMoviesAction = (movies) => {
   return {
     type: ActionTypes.SetMovies,
     payload: movies,
   };
 };
 
-export const getCurrentMovieAction = (movie) => {
+export const setCurrentMovieAction = (movie) => {
   return {
     type: ActionTypes.SetCurrentMovie,
     payload: movie,
   };
 };
 
-export const getSimilarMoviesAction = (movie) => {
+export const setSimilarMoviesAction = (movie) => {
   return {
     type: ActionTypes.SetSimilarMovies,
     payload: movie,
   };
 };
 
-export const getErrorAction = (error) => {
+export const setErrorAction = (error) => {
   return {
     type: ActionTypes.SetError,
     payload: error,
   };
 };
 
-export const getCurrentMovieIdAction = (movieId) => {
+export const setCurrentMovieIdAction = (movieId) => {
   return {
     type: ActionTypes.SetCurrentMovieId,
     payload: movieId,
+  };
+};
+
+export const setRemainingMoviesCountsAction = (genre, count) => {
+  return {
+    type: ActionTypes.SetRemainingMoviesCounts,
+    payload: {genre, count},
+  };
+};
+
+export const incRequestMoviesPagesAction = (genre) => {
+  return {
+    type: ActionTypes.IncRequestMoviesPages,
+    payload: {genre},
+  };
+};
+
+export const addMoviesAction = (genre, movies) => {
+  return {
+    type: ActionTypes.AddMovies,
+    payload: {genre, movies},
+  };
+};
+
+export const setCurrentViewMovies = (count) => {
+  return {
+    type: ActionTypes.SetCurrentViewMovies,
+    payload: count,
   };
 };
 
@@ -62,23 +97,32 @@ export const loadDetailsMovieAction = (id) => {
     if (data.movie) {
       const adaptedMovie = getAdaptedMovieDetail(data.movie);
 
-      dispatch(getCurrentMovieAction(adaptedMovie));
+      dispatch(setCurrentMovieAction(adaptedMovie));
     } else {
-      dispatch(getErrorAction(data.error));
+      dispatch(setErrorAction(data.error));
     }
   };
 };
 
-export const loadMoviesAction = () => {
-  return async (dispatch) => {
-    const data = await fetchMoviesList();
+export const loadMoviesAction = (genre) => {
+  return async (dispatch, getState) => {
+    const page = getState().requestMoviesPages[genre];
+    const remainingMoviesCounts = getState().remainingMoviesCounts[genre];
+
+    const data = await fetchMoviesList(genre, page);
 
     if (data.movies) {
       const adaptedMovies = getAdaptedMoviesList(data.movies);
+      const correctMovies = adaptedMovies.filter((movie) => movie.genres);
 
-      dispatch(getMoviesAction(adaptedMovies));
+      dispatch(incRequestMoviesPagesAction(genre));
+
+      dispatch(setRemainingMoviesCountsAction(genre, correctMovies.length + remainingMoviesCounts));
+
+      dispatch(addMoviesAction(genre, adaptedMovies));
+
     } else {
-      dispatch(getErrorAction(data.error));
+      dispatch(setErrorAction(data.error));
     }
   };
 };
@@ -90,9 +134,9 @@ export const loadSimilarMoviesAction = (id) => {
     if (data.movies) {
       const adaptedMovies = getAdaptedMoviesList(data.movies);
 
-      dispatch(getSimilarMoviesAction(adaptedMovies));
+      dispatch(setSimilarMoviesAction(adaptedMovies));
     } else {
-      dispatch(getErrorAction(data.error));
+      dispatch(setErrorAction(data.error));
     }
   };
 };

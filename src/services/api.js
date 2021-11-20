@@ -1,3 +1,5 @@
+import {ALL_GENRES} from "../utils/const";
+
 const END_POINT = `https://yts.mx/api/v2`;
 
 const throwHttpError = (statusCode) => {
@@ -40,7 +42,10 @@ export const fetchMovieDetail = commonErrorWrapper(async (movieId) => {
   return load(`${END_POINT}/movie_details.json?movie_id=${movieId}&with_images=true&with_cast=true`);
 });
 
-export const fetchMoviesList = commonErrorWrapper(async (genre = `all`, count = 40, page = 1) => {
+export const fetchMoviesList = commonErrorWrapper(async (genre, page = 1, count = 20) => {
+  if (genre === ALL_GENRES) {
+    genre = `all`;
+  }
   return load(`${END_POINT}/list_movies.json?genre=${genre}&limit=${count}&page=${page}`);
 });
 
