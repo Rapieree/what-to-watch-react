@@ -1,33 +1,28 @@
-import React, {useState} from 'react';
-import {useSelector} from 'react-redux';
+import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react/cjs/react.development';
 import Footer from '.././components/Footer/Footer';
 import GenresList from '.././components/GenresList/GenresList';
-import MovieCard from '.././components/MovieCard/MovieCard';
-import MoviesList from '.././components/MoviesList/MoviesList';
-import {ALL_GENRES} from '../utils/const';
+import LoadMoviesListWrapper from '../components/LoadMoviesListWrapper/LoadMoviesListWrapper';
+import MoviePromo from '../components/MoviePromo/MoviePromo';
+import {setCurrentMovieIdAction} from '../store/actions';
 
-const getFilteredMovies = (movies, activeGenre) => {
-  if (activeGenre === ALL_GENRES) {
-    return movies;
-  }
-
-  return movies.filter((movie) => movie.genre === activeGenre);
-};
 
 function MainPage() {
-  const movies = useSelector((state) => state.movies);
-  const activeGenre = useSelector((state) => state.activeGenre);
+  const currentMovie = useSelector((state) => state.currentMovie);
+  const currentMovieId = useSelector((state) => state.currentMovieId);
 
-  const [filteredMovies, setFilteredMovies] = useState(movies);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setFilteredMovies(getFilteredMovies(movies, activeGenre));
-  }, [movies, activeGenre]);
+    if (!currentMovieId) {
+      dispatch(setCurrentMovieIdAction(1));
+    }
+  }, []);
 
   return (
     <>
-      <MovieCard isFullCard={false}/>
+      <MoviePromo movie={currentMovie}/>
 
       <div className="page-content">
         <section className="catalog">
@@ -35,9 +30,8 @@ function MainPage() {
 
           <GenresList />
 
-          <MoviesList movies={filteredMovies} />
+          <LoadMoviesListWrapper />
         </section>
-
         <Footer />
       </div>
     </>

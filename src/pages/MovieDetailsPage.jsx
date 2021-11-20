@@ -1,21 +1,36 @@
 import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {useParams} from 'react-router';
+import {useEffect} from 'react/cjs/react.development';
 import Footer from '../components/Footer/Footer';
 import MovieCard from '../components/MovieCard/MovieCard';
 import MoviesList from '../components/MoviesList/MoviesList';
-import {getMoviesList} from '../mocks/movies-list';
-
-const movies = getMoviesList().slice(0, 8);
+import {setCurrentMovieIdAction} from '../store/actions';
 
 const MovieDetailsPage = () => {
+  const currentMovie = useSelector((state) => state.currentMovie);
+  const similarMovies = useSelector((state) => state.similarMovies);
+  const currentMovieId = useSelector((state) => state.currentMovieId);
+
+  const dispatch = useDispatch();
+
+  const routerId = Number(useParams().id);
+
+  useEffect(() => {
+    if (routerId !== currentMovieId) {
+      dispatch(setCurrentMovieIdAction(routerId));
+    }
+  }, [routerId]);
+
   return (
     <>
-      <MovieCard isFullCard={true} />
+      <MovieCard movie={currentMovie} />
 
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <MoviesList movies={movies} />
+          <MoviesList movies={similarMovies} />
         </section>
 
         <Footer />

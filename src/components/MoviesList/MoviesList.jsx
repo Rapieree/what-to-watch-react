@@ -1,23 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {setCurrentViewMovies, setRemainingMoviesCountsAction} from '../../store/actions';
+import {FILMS_ADDED_ON_CLICK, START_FILMS_COUNT} from '../../utils/const';
 import MoreButton from '../MoreButton/MoreButton';
 import MovieItem from '../MovieItem/MovieItem';
 
-const START_FILMS_COUNT = 4;
-const FILMS_ADDED_ON_CLICK = 8;
+const MoviesList = ({movies, currentViewMovies = START_FILMS_COUNT}) => {
+  const activeGenre = useSelector((state) => state.activeGenre);
 
-const MoviesList = ({movies}) => {
-  const [viewFilmsCount, setViewFilmsCount] = useState(START_FILMS_COUNT);
+  const [viewFilmsCount, setViewFilmsCount] = useState(currentViewMovies);
 
-  useEffect(() => {
-    setViewFilmsCount(START_FILMS_COUNT);
-  }, [movies]);
+  const dispatch = useDispatch();
 
   const addFilmsOnMoreButtonClick = () => {
     if (viewFilmsCount + FILMS_ADDED_ON_CLICK < movies.length) {
       setViewFilmsCount(viewFilmsCount + FILMS_ADDED_ON_CLICK);
+      dispatch(setCurrentViewMovies(viewFilmsCount + FILMS_ADDED_ON_CLICK));
     } else {
       setViewFilmsCount(movies.length);
+      dispatch(setCurrentViewMovies(movies.length));
     }
+    dispatch(setRemainingMoviesCountsAction(activeGenre, movies.length - viewFilmsCount));
   };
 
   return (
@@ -26,9 +29,7 @@ const MoviesList = ({movies}) => {
         {movies.slice(0, viewFilmsCount).map((movie) => <MovieItem key={movie.id} movie={movie} />)}
       </div>
 
-      {viewFilmsCount < movies.length
-        ? <MoreButton onClick={addFilmsOnMoreButtonClick}/>
-        : ``}
+      <MoreButton onClick={addFilmsOnMoreButtonClick}/>
     </>
   );
 };
